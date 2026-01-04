@@ -17,7 +17,7 @@ import numpy as np
 from pathlib import Path
 
 # --- CONFIGURATION ---
-MODEL_NAME = "dansachs/indo-religiolect-bert"
+MODEL_NAME = "dansachs/indo-religiolect-bert-v2"
 LABELS = ['Islam', 'Catholic', 'Protestant']
 
 def load_model():

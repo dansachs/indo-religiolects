@@ -16,18 +16,18 @@ The corpus consists of ~3 million clean sentences scraped from 100+ authoritativ
 **Size:** ~3 million sentences  
 **Sources:** 30 Catholic sites, 27 Islamic sites, 44 Protestant sites
 
-🔗 *Dataset hosted externally (not in this repository)*
+🔗 [View Dataset on Hugging Face](https://huggingface.co/datasets/dansachs/indonesian-religious-corpus)
 
 ### 2. The Model
 
 The fine-tuned BERT model is available on the Hugging Face Hub for easy inference.
 
-**Model Repository:** `dansachs/indo-religiolect-bert`  
+**Model Repository:** `dansachs/indo-religiolect-bert-v2`  
 **Base Model:** `indolem/indobert-base-uncased`  
 **Training:** Fine-tuned with balanced undersampling strategy  
 **Classes:** Islam (0), Catholic (1), Protestant (2)
 
-🔗 [View Model on Hugging Face](https://huggingface.co/dansachs/indo-religiolect-bert)
+🔗 [View Model on Hugging Face](https://huggingface.co/dansachs/indo-religiolect-bert-v2)
 
 ## 🛠️ Installation
 
@@ -130,7 +130,7 @@ import torch
 import torch.nn.functional as F
 
 # Load model
-MODEL_NAME = "dansachs/indo-religiolect-bert"
+MODEL_NAME = "dansachs/indo-religiolect-bert-v2"
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME)
 

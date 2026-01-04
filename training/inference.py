@@ -8,9 +8,10 @@ Can load models from:
 - Google Drive path (if mounted in Colab)
 
 Usage:
+    python inference.py --text "Your text here"
     python inference.py --model "username/model-name" --text "Your text here"
     python inference.py --model "./models/trained/model_name" --text "Your text here"
-    python inference.py --model "path/to/model" --file input.txt
+    python inference.py --file input.txt
 """
 
 import argparse
@@ -19,7 +20,11 @@ from pathlib import Path
 from typing import List, Dict, Union
 import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
+from huggingface_hub import hf_hub_download
 import numpy as np
+
+# Default model from Hugging Face
+DEFAULT_MODEL = "dansachs/indo-religiolect-bert-v2"
 
 # Label mapping (default - will be loaded from model if available)
 DEFAULT_LABEL_MAP = {0: 'Islam', 1: 'Catholic', 2: 'Protestant'}
@@ -55,8 +60,8 @@ class ReligiousTextClassifier:
         print(f"   Labels: {list(self.label_map.values())}")
     
     def _load_label_map(self, model_path: str) -> Dict[int, str]:
-        """Load label mapping from model directory."""
-        # Try to load from model directory
+        """Load label mapping from model directory or Hugging Face Hub."""
+        # Try to load from local model directory
         model_dir = Path(model_path)
         if model_dir.exists() and model_dir.is_dir():
             label_map_file = model_dir / "label_map.json"
@@ -65,6 +70,22 @@ class ReligiousTextClassifier:
                     label_map_reverse = json.load(f)
                     # Convert from {"Islam": 0, ...} to {0: "Islam", ...}
                     return {v: k for k, v in label_map_reverse.items()}
+        
+        # Try to load from Hugging Face Hub
+        if "/" in model_path and not Path(model_path).exists():
+            try:
+                label_map_file = hf_hub_download(
+                    repo_id=model_path,
+                    filename="label_map.json",
+                    repo_type="model"
+                )
+                with open(label_map_file, 'r') as f:
+                    label_map_reverse = json.load(f)
+                    # Convert from {"Islam": 0, ...} to {0: "Islam", ...}
+                    return {v: k for k, v in label_map_reverse.items()}
+            except Exception:
+                # If file doesn't exist on Hub, fall through to default
+                pass
         
         # Fallback to default
         return DEFAULT_LABEL_MAP
@@ -151,25 +172,28 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  # Single text from command line
+  # Single text from command line (uses default Hugging Face model)
+  python inference.py --text "Teks dalam bahasa Indonesia"
+  
+  # Single text with specific model
   python inference.py --model "username/model-name" --text "Teks dalam bahasa Indonesia"
   
   # Multiple texts from file
-  python inference.py --model "./models/trained/model" --file texts.txt
+  python inference.py --file texts.txt
   
   # With probabilities
-  python inference.py --model "username/model-name" --text "Teks" --probs
+  python inference.py --text "Teks" --probs
   
   # Use CPU instead of GPU
-  python inference.py --model "username/model-name" --text "Teks" --device cpu
+  python inference.py --text "Teks" --device cpu
         """
     )
     
     parser.add_argument(
         '--model',
         type=str,
-        required=True,
-        help='Model path (Hugging Face Hub ID or local path)'
+        default=DEFAULT_MODEL,
+        help=f'Model path (Hugging Face Hub ID or local path, default: {DEFAULT_MODEL})'
     )
     
     parser.add_argument(

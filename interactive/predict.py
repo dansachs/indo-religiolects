@@ -15,7 +15,7 @@ import numpy as np
 
 # --- CONFIGURATION ---
 # Your specific model ID from Hugging Face
-MODEL_NAME = "dansachs/indo-religiolect-bert" 
+MODEL_NAME = "dansachs/indo-religiolect-bert-v2" 
 
 print(f"⬇️ Loading model: {MODEL_NAME}...")
 try:
