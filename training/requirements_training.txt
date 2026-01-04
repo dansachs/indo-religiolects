@@ -1,0 +1,13 @@
+# Requirements for model training
+# Install with: pip install -r requirements_training.txt
+
+transformers>=4.30.0
+datasets>=2.12.0
+scikit-learn>=1.3.0
+accelerate>=0.20.0
+seaborn>=0.12.0
+matplotlib>=3.7.0
+torch>=2.0.0
+pandas>=2.0.0
+numpy>=1.24.0
+

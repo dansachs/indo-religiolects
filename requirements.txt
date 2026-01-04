@@ -1,0 +1,32 @@
+# HTTP & Async
+aiohttp>=3.9.0
+aiofiles>=23.2.0
+requests>=2.31.0
+Brotli>=1.1.0
+
+# HTML Parsing & Extraction
+selectolax>=0.3.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+lxml_html_clean>=0.4.0
+trafilatura>=1.6.0
+
+# Data Processing
+pandas>=2.0.0
+
+# NLP
+nltk>=3.8.0
+
+# Language Detection
+langdetect>=1.0.9
+
+# Text Fixing
+ftfy>=6.1.0
+
+# Progress & Dashboard
+rich>=13.7.0
+tqdm>=4.66.0
+
+# Utilities
+xxhash>=3.4.0
+certifi>=2023.0.0

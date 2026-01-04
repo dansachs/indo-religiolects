@@ -1,0 +1,5 @@
+# Requirements for interactive model usage
+transformers>=4.30.0
+torch>=2.0.0
+numpy>=1.24.0
+

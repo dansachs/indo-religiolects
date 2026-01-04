@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# Data files (too large for GitHub)
+data/
+*.csv
+*.tsv
+
+# Models and checkpoints
+models/
+*.pt
+*.pth
+*.ckpt
+*.bin
+
+# Archives and backups
+archive/
+*.bak
+*.backup
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Logs
+*.log
+logs/
+
+# Environment variables
+.env
+.env.local
+
+# Hugging Face cache (optional, but can be large)
+.cache/
+huggingface/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
