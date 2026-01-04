@@ -33,8 +33,8 @@ The fine-tuned BERT model is available on the Hugging Face Hub for easy inferenc
 
 Clone the repository:
 ```bash
-git clone https://github.com/dansachs/indo-religious-lang/
-cd indonesian-religious-model
+git clone https://github.com/dansachs/indo-religiolects/
+cd indo-religiolects
 ```
 
 Create and activate a virtual environment:
