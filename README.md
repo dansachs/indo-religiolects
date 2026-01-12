@@ -2,7 +2,7 @@
 
 An NLP project to classify Indonesian text into three distinct religious denominations: Islam, Catholicism, and Protestantism.
 
-This model uses Transfer Learning (fine-tuning IndoBERT) to identify the unique "religiolects" (religious dialects) used by different faith communities in Indonesia. It successfully distinguishes between groups with high accuracy, even navigating the shared vocabulary between Catholic and Protestant discourse.
+This model fine-tunes IndoBERT to identify the unique "religiolects" (religious dialects) used by different faith communities in Indonesia. It successfully distinguishes between groups with high accuracy, even navigating the shared vocabulary between Catholic and Protestant discourse.
 
 ## 📂 Data & Model Access
 
